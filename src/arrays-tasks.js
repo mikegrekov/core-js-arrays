@@ -558,8 +558,16 @@ function findLongestIncreasingSubsequence(nums) {
  *  propagateItemsByPositionIndex([ 'a', 'b', 'c', null ]) => [ 'a', 'b', 'b', 'c', 'c', 'c',  null, null, null, null ]
  *  propagateItemsByPositionIndex([ 1,2,3,4,5 ]) => [ 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5 ]
  */
-function propagateItemsByPositionIndex(/* arr */) {
-  throw new Error('Not implemented');
+function propagateItemsByPositionIndex(arr) {
+  if (arr.length === 0) return [];
+  let res = [];
+  res = arr
+    .map((item, index) => {
+      const arr1 = new Array(index + 1);
+      return arr1.fill(item);
+    })
+    .flat();
+  return res;
 }
 
 /**
@@ -615,8 +623,20 @@ function sortDigitNamesByNumericOrder(/* arr */) {
  *   swapHeadAndTail([]) => []
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+function swapHeadAndTail(arr) {
+  if (arr.length < 2) return arr;
+  const len = arr.length;
+  let middle = 0;
+  const half = Math.trunc(len / 2);
+  let res = [];
+  if (len % 2 !== 0) middle = half;
+  if (middle) {
+    res = arr.slice(-half).concat(arr.slice(0, half));
+    res.splice(half, 0, arr[middle]);
+  } else {
+    res = arr.slice(-half).concat(arr.slice(0, half));
+  }
+  return res;
 }
 
 module.exports = {
